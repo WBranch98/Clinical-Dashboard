@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PatientList from "./components/PatientList";
+import PatientSummary from "./components/PatientSummary";
 
 export default function App() {
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -10,11 +11,8 @@ export default function App() {
         Clinical Dashboard
       </h1>
       {selectedPatient ? (
-        <div style={{ padding: "1rem" }}>
-          <button onClick={() => setSelectedPatient(null)}>← Back to list</button>
-          <h2 style={{ marginTop: "1rem" }}>Patient: {selectedPatient.id}</h2>
-        </div>
-      ) : (
+        <PatientSummary patient={selectedPatient} onBack={() => setSelectedPatient(null)} />
+       ) : (
         <PatientList onSelect={setSelectedPatient} />
       )}
     </div>
