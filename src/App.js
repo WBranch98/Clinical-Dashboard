@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import PatientList from "./components/PatientList";
 
-function App() {
+export default function App() {
+  const [selectedPatient, setSelectedPatient] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ maxWidth: "900px", margin: "0 auto", fontFamily: "sans-serif" }}>
+      <h1 style={{ padding: "1rem", borderBottom: "1px solid #eee", fontSize: "22px" }}>
+        Clinical Dashboard
+      </h1>
+      {selectedPatient ? (
+        <div style={{ padding: "1rem" }}>
+          <button onClick={() => setSelectedPatient(null)}>← Back to list</button>
+          <h2 style={{ marginTop: "1rem" }}>Patient: {selectedPatient.id}</h2>
+        </div>
+      ) : (
+        <PatientList onSelect={setSelectedPatient} />
+      )}
     </div>
   );
 }
-
-export default App;
