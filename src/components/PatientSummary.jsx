@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPatientSummary } from "../services/fhirService";
 import VitalsTrend from "./VitalsTrend";
 import ConditionsList from "./ConditionsList";
+import EncounterHistory from "./EncounterHistory";
 
 const cleanName = (name) => name.replace(/\d+/g, "").trim();
 
@@ -50,6 +51,7 @@ export default function PatientSummary({ patient, onBack }) {
           <StatCard label="Observations" value={summary.observationCount} color="#E6F1FB" textColor="#185FA5" />
           <VitalsTrend patientId={patient.id} />
           <ConditionsList patientId={patient.id} />
+          <EncounterHistory patientId={patient.id} />
         </div>
       )}
     </div>
